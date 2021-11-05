@@ -25,4 +25,29 @@ elif paginaSelecionada == 'Tela de inicio':
     st.title('Tela principal')
 
 elif paginaSelecionada == 'Registro Secretária':
-    ''
+
+con = sqlite3.connect('banco_programa.db')
+cursor = con.cursor()
+
+paginaSelecionada = st.sidebar.selectbox('Selecione o caminho', ['Registro Secretária'])
+
+if paginaSelecionada == 'Registro Secretária':
+    st.title("Tela Cadastro")
+
+    with st.form(key='include_secretaria'):
+        input_name = st.text_input(label='Insira o seu nome')
+        input_senha = st.text_input(label='Insira a senha', type="password")
+        input_button_enviar = st.form_submit_button("Enviar Dados")
+
+    if input_button_enviar:
+        cursor.execute(f"INSERT INTO cadastro VALUES ('{input_name}','{input_senha}")
+        con.commit()
+
+        st.success('Adicionado com sucesso !!')
+
+elif paginaSelecionada == 'Tela de inicio':
+    st.title('Tela principal')
+
+elif paginaSelecionada == 'Registro Secretária':
+   
+   
